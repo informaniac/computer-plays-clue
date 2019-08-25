@@ -1,0 +1,23 @@
+{
+  "weapons": ["Dolch", "Leuchter", "Pistole", "Seil", "Heizungsrohr", "Rohrzange"],
+  "figures": ["Oberst von Gatow", "Professor Bloom", "Reverend Grün", "Baronin von Porz", "Fräulein Gloria", "Frau Weiss"],
+  "rooms": ["Halle", "Salon", "Speisezimmer", "Küche", "Musikzimmer", "Wintergarten", "Billardzimmer", "Bibliothek", "Arbeitszimmer"],
+  "distances":
+    [
+      ["Musikzimmer", "Wintergarten", 2],
+      ["Musikzimmer", "Billardzimmer", 7],
+      ["Wintergarten", "Salon", 1],
+      ["Wintergarten", "Billardzimmer", 7],
+      ["Billardzimmer", "Bibliothek", 2],
+      ["Bibliothek", "Arbeitszimmer", 7],
+      ["Bibliothek", "Halle", 7],
+      ["Arbeitszimmer", "Küche", 1],
+      ["Arbeitszimmer", "Halle", 2],
+      ["Halle", "Salon", 7],
+      ["Halle", "Speisezimmer", 8],
+      ["Salon", "Speisezimmer", 2],
+      ["Speisezimmer", "Musikzimmer", 5],
+      ["Speisezimmer", "Küche", 11],
+      ["Küche", "Musikzimmer", 7]
+    ]
+}
