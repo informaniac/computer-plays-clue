@@ -1,8 +1,8 @@
 import random
 
 from inout.parser import parse_game_config
-from strategies.player import Player
-from strategies.random_player import RandomPlayer
+from strategies import Player
+from strategies import RandomPlayer
 
 
 class Game:
