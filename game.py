@@ -62,6 +62,9 @@ class Game:
             current_receiving_player = (current_receiving_player + 1) % len(self.players)
 
         print(f"Starting a game with {len(self.players)} Players: {', '.join(str(p) for p in self.players)}")
+        # Real game starts now (callback)
+        for player in self.players:
+            player.game_play_starts()
 
         # Play actual game
         current_player_index = 0

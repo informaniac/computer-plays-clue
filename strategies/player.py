@@ -33,6 +33,12 @@ class Player(abc.ABC):
         """
         self.cards.add(card)
 
+    def game_play_starts(self):
+        """
+        Game playing starts (all cards were given to the players, next the first player will throw a dice)
+        """
+        pass
+
     @abc.abstractmethod
     def next_room(self, possible_rooms):
         """
