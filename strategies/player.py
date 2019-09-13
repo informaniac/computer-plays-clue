@@ -13,6 +13,7 @@ class Player(abc.ABC):
         self.figure = figure
         self.still_in_game = True
         self.STRATEGY = ""
+        self.game = None
 
     def set_game_reference(self, game):
         """
