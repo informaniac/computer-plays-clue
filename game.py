@@ -1,6 +1,7 @@
 import random
 
 from inout.parser import parse_game_config
+from logic.card import CardType
 from strategies import Player
 from strategies import RandomPlayer
 
@@ -36,6 +37,22 @@ class Game:
         # Attach this game to each player
         for player in self.players:
             player.set_game_reference(self)
+
+    def get_card_type(self, name):
+        """
+        Get type of card with the given name
+
+        :param name: name of the card
+        :type name: str
+        :return: type of the card
+        :rtype: CardType
+        """
+        if name in self.game.figure_names:
+            return CardType.FIGURE
+        elif name in self.game.weapons:
+            return CardType.WEAPON
+        else:
+            return CardType.ROOM
 
     def play(self):
         """
