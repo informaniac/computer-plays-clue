@@ -1,11 +1,7 @@
 import random
 
 from strategies.random_player import RandomPlayer
-
-# temporary declaraion?
-ALL_WEAPONS = ["Dolch", "Leuchter", "Pistole", "Seil", "Heizungsrohr", "Rohrzange"]
-ALL_ROOMS = ["Halle", "Salon", "Speisezimmer", "Küche", "Musikzimmer", "Wintergarten", "Billardzimmer", "Bibliothek", "Arbeitszimmer"]
-ALL_FIGURES = ["Oberst von Gatow", "Professor Bloom", "Reverend Grün", "Baronin von Porz", "Fräulein Gloria", "Frau Weiss"]
+from logic.card import CardType
 
 
 class LearnsStuffPlayer(RandomPlayer):
@@ -36,15 +32,16 @@ class LearnsStuffPlayer(RandomPlayer):
         return card in self.cards
 
     def mark_for_solution(self, card):
-        if card in ALL_FIGURES:
+        card_type = self.game.get_card_type(card)
+        if card_type is CardType.FIGURE:
             self.knows_figure = True
             self.solution_figure = card
             self.unknown_figures = [card]
-        elif card in ALL_WEAPONS:
+        elif card_type is CardType.WEAPON:
             self.knows_weapon = True
             self.solution_weapon = card
             self.unknown_weapons = [card]
-        elif card in ALL_ROOMS:
+        elif card_type is CardType.ROOM:
             self.knows_room = True
             self.solution_room = card
             self.unknown_rooms = [card]
