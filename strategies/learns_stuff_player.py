@@ -3,19 +3,37 @@ import random
 from strategies.random_player import RandomPlayer
 from logic.card import CardType
 
+NUM_OF_CARDS = 21                           # there are 21 cards in the game
+NUM_OF_CARDS_ON_PLAYERS = NUM_OF_CARDS - 3  # of which 3 have been removed
+
 
 class LearnsStuffPlayer(RandomPlayer):
     def __init__(self, figure):
         super().__init__(figure)
-        self.STRATEGY = "AT LEAST LEARNS SOMETHING IF NOBODY SHOWS CARDS"
+        self.STRATEGY = "ALSO MEMORIZE SETS OF CARD(S) THAT PLAYERS COULD HAVE SHOWN"  # but does not resolve this, yet
         self.knows_weapon = False
         self.solution_weapon = ""
         self.knows_room = False
         self.solution_room = ""
         self.knows_figure = False
         self.solution_figure = ""
-        self.my_questioned_cards = []
-        self.my_questioned_combinations = []
+        self.num_own_cards = len(self.cards)
+        self.my_questioned_cards = []         # temporarily stores the rounds guess ["card", "card", "card"]
+        self.my_questioned_combinations = []  # [["card", "card", "card"]...]
+        self.my_uncertainties = []            # uncertainty: ("player", ["card"...])
+        self.num_other_players_cards = None   # if amount of cards is balanced, each player gets the same amount
+        # check if we can determine how many cards each player has
+        if NUM_OF_CARDS_ON_PLAYERS % len(self.game.players) is 0:
+            self.game_is_balanced = True
+            self.game_is_balanced_only_for_me = False
+            self.num_other_players_cards = NUM_OF_CARDS_ON_PLAYERS / len(self.game.players)
+        elif (NUM_OF_CARDS_ON_PLAYERS - self.num_own_cards) % len(self.game.players - 1) is 0:
+            self.game_is_balanced = True
+            self.game_is_balanced_only_for_me = True
+            self.num_other_players_cards = (NUM_OF_CARDS_ON_PLAYERS - self.num_own_cards) / len(self.game.players - 1)
+        else:
+            self.game_is_balanced = False
+            self.game_is_balanced_only_for_me = False
 
     # OVERRIDDEN
     def see_no_card_from_nobody(self):
